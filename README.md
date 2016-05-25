@@ -24,7 +24,7 @@ Usage:
 顯示基本操作
 
 ```
-% kobe -h                                                                                                                       1 ↵
+% kobe -h
 kobe - send message to engineer.kobe.ga
 Max 1024 (text) or 300 (image) chars.
 
