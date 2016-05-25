@@ -1,0 +1,7 @@
+*.py[cod]
+*.egg-info
+__pycache__
+.idea
+.coverage
+dist
+build
