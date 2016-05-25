@@ -1,2 +1,42 @@
 #!/usr/bin/env python
+"""
+kobe - send message to engineer.kobe.ga
+Max 1024 (text) or 300 (image) chars.
 
+Usage:
+    kobe [-i] <message>
+    kobe --help
+    kobe --version
+
+Options:
+    -i --image      Image mode
+    -h --help       Show this page 
+    -v --version    Show version info
+"""
+
+from __future__ import print_function
+import sys
+from docopt import docopt
+
+from kobe import submit
+from kobe.version import VERSION
+
+def main():
+    args = docopt(__doc__, version=VERSION)
+    ret = submit(
+        format="image" if args['--image'] else "text",
+        msg=args['<message>'],
+    )
+   
+    try:
+        if ret.ok:
+            ret = ret.json()
+        
+            if ret.get('state') == 'success':
+                print(ret.get('message'))
+                return
+    except ValueError:
+        print(ret)
+
+if __name__ == "__main__":
+    main()
